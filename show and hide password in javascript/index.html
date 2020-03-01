@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <i class="fa fa-eye" id="eye"></i>
+    <input type="text" id="pwd" placeholder="Password">
+</div>
+<script>
+    var pwd = document.getElementById('pwd');
+    var eye = document.getElementById('eye');
+    eye.addEventListener('click',togglePass);
+    function togglePass(){
+        eye.classList.toggle('active');
+        (pwd.type == 'password') ? pwd.type = 'text' : 
+        pwd.type = 'password';
+    }
+</script>
+</body>
+</html>
