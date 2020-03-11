@@ -44,11 +44,11 @@
                 </tr>
                 <tr>
                     <td colspan="4">Subtotal :</td>
-                    <td id="total_price">400</td>
+                    <td><span id="total_price">500</span></td>
                 </tr>
                 <tr>
                     <td colspan="4">TAX(5% of Subtotol) : </td>
-                    <td>10</td>
+                    <td><span id="tax"></span></td>
                 </tr>
                 <tr>
                     <td colspan="4">Total :</td>
@@ -63,19 +63,28 @@
     <script>
         
         const plusBtn = document.getElementById("plus");
-        
         const minusBtn = document.getElementById("minus");
         const price = document.getElementById("price").innerText;
         
+        
         plusBtn.addEventListener("click",function(){
-          let quntity = document.querySelector(".quantity").innerText;
-           let quntity2 =  parseFloat(quntity) + 1;
-        let currentValu =  document.querySelector(".quantity").innerText = quntity2;
-            console.log("currentValu",currentValu);
-            console.log("price",price);
-           let reuslt =  parseFloat(currentValu) * parseFloat(price);
-            document.getElementById("price").innerText = reuslt;
+            let quntity = document.querySelector(".quantity").innerText;
+            let quntity2 =  parseFloat(quntity) + 1;
+            let currentValu =  document.querySelector(".quantity").innerText = quntity2;
+            var result =  parseFloat(currentValu) * parseFloat(price);
+            document.getElementById("price").innerText = result;
         });
+        minusBtn.addEventListener("click",function(){
+            let quntity = document.querySelector(".quantity").innerText;
+            if(quntity>1){
+                let quntity2 =  parseFloat(quntity) - 1;
+                let currentValu =  document.querySelector(".quantity").innerText = quntity2;
+                var result =  parseFloat(currentValu) * parseFloat(price);
+                document.getElementById("price").innerText = result;
+            }
+        });
+        document.getElementById("total_price").innerText = result;
+        
         
         
     </script>

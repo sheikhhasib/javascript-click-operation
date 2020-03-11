@@ -38,22 +38,22 @@
                         <div class="form-group row">
                             <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Amount of the loan (৳):</label>
                             <div class="col-sm-7">
-                                <input type="email" class="form-control form-control-sm" id="colFormLabelSm">
+                                <input type="email" class="form-control form-control-sm" id="amount">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Annual interest (%):</label>
                             <div class="col-sm-7">
-                                <input type="email" class="form-control form-control-sm" id="colFormLabelSm" >
+                                <input type="email"  class="form-control form-control-sm" id="apr" >
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Repayment period (years):	</label>
                             <div class="col-sm-7">
-                                <input type="email" class="form-control form-control-sm" id="colFormLabelSm" >
+                                <input type="email" class="form-control form-control-sm" id="years" >
                             </div>
                         </div>
-                        <button type="button" class="btn btn-primary">Calculate</button>
+                        <button type="button"  id="calculate" class="btn btn-primary">Calculate</button>
                     </form>
                 </div>
             </div>
@@ -64,19 +64,19 @@
                     <div class="row">
                         <label class="col-sm-4 col-form-label col-form-label-sm">Monthly payment:</label>
                         <div class="col-sm-7">
-                            <label>৳</label>
+                            <label>৳<span id="payment"></span> </label>
                         </div>
                     </div>
                     <div class="row">
                         <label class="col-sm-4 col-form-label col-form-label-sm">Total payment:</label>
                         <div class="col-sm-7">
-                            <label>৳</label>
+                            <label>৳<span id="total"></span></label>
                         </div>
                     </div>
                     <div class="row">
                         <label class="col-sm-4 col-form-label col-form-label-sm">Total interest:</label>
                         <div class="col-sm-7">
-                            <label>৳</label>
+                            <label>৳<span id="totalinterest"></span></label>
                         </div>
                     </div>
                     
@@ -86,6 +86,44 @@
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script>
+          
+
+           
+
+            calculate.addEventListener("click",function(){
+                
+                
+                var amount = document.getElementById("amount");
+                var apr = document.getElementById("apr");
+                var years = document.getElementById("years");
+                var calculate = document.getElementById("calculate");
+                var payment = document.getElementById("payment").innerText;
+                var total = document.getElementById("total");
+                var totalinterest = document.getElementById("totalinterest");
+
+
+                var principal = parseFloat(amount.value);
+                var interest = (parseFloat(apr.value) / 100 )/ 12;
+                var payments = parseFloat(years.value) * 12;
+                
+                var x = parseFloat(Math.pow(1 + interest, payments));
+                var monthly =parseFloat((principal*x*interest)/(x-1));
+                var totalpayment = monthly * payments;
+                var toint = totalpayment - principal;
+                
+                document.getElementById("payment").innerText = monthly.toFixed(2);
+                document.getElementById("total").innerText = totalpayment.toFixed(2);
+                document.getElementById("totalinterest").innerText = toint.toFixed(2);
+            });
+            
+            
+
+        
+        
+        
+        
+    </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
